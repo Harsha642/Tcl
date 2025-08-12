@@ -48,7 +48,7 @@ set myVariable "red green blue"
 puts [lindex $myVariable 1]
 --> blue
 --> green
-# 5) Associative arrays have an index (key) that is not necessarily an integer. It is generally a string that acts like key value pairs.
+# 5) Associative arrays have an index (key) that is not necessarily an integer. It is generally a string that acts like key value pairs. SYNTAX --> set ArrayName(Index) value
 set  marks(english) 80
 puts $marks(english)
 set  marks(mathematics) 90
