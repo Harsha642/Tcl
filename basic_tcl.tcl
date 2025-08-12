@@ -27,10 +27,12 @@ puts [expr $a + $b]
 set myVariable 18
 puts $myVariable
 --> 18
+
 # 2) In Tcl, a variable is stored as a string by default, but if used in arithmetic, it is automatically converted to an integer.
 set myVariable 18
 puts [expr $myVariable + 6 + 9]
 --> 33
+
 # 3) Strings: Unlike other languages single words need no quotes; multi-word strings can use double quotes or curly braces.
 set myVariable hello
 puts $myVariable
@@ -41,6 +43,7 @@ set myVariable {hello world}
 puts $myVariable
 --> hello world
 --> hello world
+
 # 4) Lists: Groups of elements, defined with quotes or braces, accessed with commands like lindex.
 # SYNTAX: set listName { item1 item2 item3 .. itemn } or set listName [list item1 item2 item3] or set listName [split "items separated by a character" split_character]
 set myVariable {red green blue}
@@ -49,6 +52,7 @@ set myVariable "red green blue"
 puts [lindex $myVariable 1]
 --> blue
 --> green
+
 # 5) Associative arrays have an index (key) that is not necessarily an integer. It is generally a string that acts like key value pairs. SYNTAX: set ArrayName(Index) value
 set  marks(english) 80
 puts $marks(english)
@@ -72,6 +76,7 @@ proc add {a b} {
 }
 puts [add 10 30]
 --> 40
+
 # Procedures with Variable Arguments
 proc avg {numbers} {
    set sum 0
@@ -98,4 +103,34 @@ close $fp
 --> test 
 # In Tcl, opening a file creates a handle that gives access to it in a specified mode, such as "r" for reading, "w" for writing, or "a" for appending, but does not retrieve its contents. 
 # Reading a file then uses that handle to actually load the data into the program.
+#-----------------------------------------------------------------------------------------------------------------------
+# Regular Expressions --> SYNTAX: regexp optionalSwitches patterns searchString fullMatch subMatch1 ... subMatchn
+# pattern – the regex rules you want to match. # searchString – the text to search in.
+# fullMatchVar – a variable to store the full matched text. # subMatch1..N – variables to store matches from capture groups (...).
+# switches – optional flags to modify behavior (explained later).
+regexp {([A-Za-z]*)} "Tcl Tutorial" a b 
+puts "Full Match: $a"
+puts "Sub Match1: $b"
+--> Full Match: Tcl
+--> Sub Match1: Tcl
+# {([A-Za-z]*)} → matches any sequence of letters (0+ times).
+
+# MULTIPLE PATTERNS
+regexp {([A-Za-z]*).([A-Za-z]*)} "Tcl Tutorial" full sub1 sub2
+puts "Full Match: $full"
+puts "Sub Match1: $sub1"
+puts "Sub Match2: $sub2"
+--> Full Match: Tcl Tutorial
+--> Sub Match1: Tcl
+--> Sub Match2: Tutorial
+# . → Matches any single character (the space in this case).
+
+# SWITCHES for regexp such as -nocase, -indicies, -line, -start index ...
+regexp -nocase {([A-Z]*.([A-Z]*))} "Tcl Tutorial" full sub1 sub2
+puts "Full Match: $full"
+puts "Sub Match1: $sub1"
+puts "Sub Match2: $sub2"
+--> Full Match: Tcl Tutorial
+--> Sub Match1: Tcl Tutorial
+--> Sub Match2: Tutorial
 #-----------------------------------------------------------------------------------------------------------------------
