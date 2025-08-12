@@ -64,3 +64,38 @@ set sum [expr $variableA +20];
 puts $sum
 --> 10
 --> 30
+#-----------------------------------------------------------------------------------------------------------------------
+# Procedure is simply equivaelnt to defining user function in C/C++/Python
+# Procedure with Multiple Arguments a,b
+proc add {a b} {
+   return [expr $a+$b]
+}
+puts [add 10 30]
+--> 40
+# Procedures with Variable Arguments
+proc avg {numbers} {
+   set sum 0
+   foreach number $numbers {
+      set sum  [expr $sum + $number]
+   }
+   set average [expr $sum/[llength $numbers]]
+   return $average
+}
+puts [avg {70 80 50 60}]
+puts [avg {70 80 50 }]
+--> 65
+--> 66
+#-----------------------------------------------------------------------------------------------------------------------
+# TCL File I/O. Tcl supports file handling with the help of the built in commands open, read, puts, gets, and close.
+# SYNTAX's --> Opening File: open fileName accessMode;  Closing a File: close fileName; Writing a File: puts $filename "text to write"; Reading a File: set file_data [read $fp]
+set fp [open "input.txt" w+]
+puts $fp "test"
+close $fp
+set fp [open "input.txt" r]
+set file_data [read $fp]
+puts $file_data
+close $fp
+--> test 
+# In Tcl, opening a file creates a handle that gives access to it in a specified mode, such as "r" for reading, "w" for writing, or "a" for appending, but does not retrieve its contents. 
+# Reading a file then uses that handle to actually load the data into the program.
+#-----------------------------------------------------------------------------------------------------------------------
