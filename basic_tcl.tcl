@@ -55,3 +55,11 @@ set  marks(mathematics) 90
 puts $marks(mathematics)
 --> 80
 --> 90
+#-----------------------------------------------------------------------------------------------------------------------
+# Tcl uses dynamic typing, automatically converting a variable’s value to the needed type—for example, changing a string "5" to a number during arithmetic.
+set variableA "10"
+puts $variableA
+set sum [expr $variableA +20];
+puts $sum
+--> 10
+--> 30
