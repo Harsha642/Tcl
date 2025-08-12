@@ -42,13 +42,14 @@ puts $myVariable
 --> hello world
 --> hello world
 # 4) Lists: Groups of elements, defined with quotes or braces, accessed with commands like lindex.
+# SYNTAX: set listName { item1 item2 item3 .. itemn } or set listName [list item1 item2 item3] or set listName [split "items separated by a character" split_character]
 set myVariable {red green blue}
 puts [lindex $myVariable 2]
 set myVariable "red green blue"
 puts [lindex $myVariable 1]
 --> blue
 --> green
-# 5) Associative arrays have an index (key) that is not necessarily an integer. It is generally a string that acts like key value pairs. SYNTAX --> set ArrayName(Index) value
+# 5) Associative arrays have an index (key) that is not necessarily an integer. It is generally a string that acts like key value pairs. SYNTAX: set ArrayName(Index) value
 set  marks(english) 80
 puts $marks(english)
 set  marks(mathematics) 90
