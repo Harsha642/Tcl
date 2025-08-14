@@ -60,6 +60,48 @@ set  marks(mathematics) 90
 puts $marks(mathematics)
 --> 80
 --> 90
+
+#6) Dictionary is an unordered collection of key-value pairs.
+#CREATING A DICTIONARY
+#Way1
+set person {name Harsha age 30 city Austin}
+#Way2
+set person [dict create name Harsha age 30 city Austin]
+#Way3
+set person [dict create]
+set person [dict set person name Harsha]
+set person [dict set person age 30]
+set person [dict set person city Austin]
+#Way4: This is modified from Way3--> without square brackets and assignment, Tcl updates the variable person automatically for you.
+dict set person name Harsha
+dict set person age 30
+dict set person city Austin
+
+#GET DICTIONARY SIZE, VALUE BY KEY, ALL KEYS, ALL VLAUES and CHECK IF KEY EXISTS
+set person [dict create name Harsha age 30 city Austin]
+puts [dict size $person]
+--> 3
+set value [dict get $person name]
+puts $value 
+--> Harsha
+set keys [dict keys $person]
+puts $keys 
+--> name age city
+set values [dict values $person]
+puts $values  
+--> Harsha 30 Austin
+set exists [dict exists $person age]
+puts $exists
+--> 1
+
+#ITERATING OVER KEYS
+foreach key [dict keys $person] {
+    set value [dict get $person $key]
+    puts "$key → $value"
+}
+--> name → Harsha
+--> age → 30
+--> city → Austin
 #-----------------------------------------------------------------------------------------------------------------------
 # Tcl uses dynamic typing, automatically converting a variable’s value to the needed type—for example, changing a string "5" to a number during arithmetic.
 set variableA "10"
